@@ -21,7 +21,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/voto")
 public class VotoController {
-
     @Autowired
     private VotoService votoService;
     @Autowired
@@ -30,19 +29,14 @@ public class VotoController {
     private EmprendimientoRepository emprendimientoRepository;
     @Autowired
     private EventoRepository eventoRepository;
-
-//    @Autowired
-//    private UsuarioServer usuarioServer;
-
     private VotoDto votoDto;
     @PostMapping("crearVotoIdUsuario/{idUsuario}/IdEvento/{idEvento}/IdEmprendimiento/{idEmprendimiento}/StringGeneradoPor/{idGeneradoPor}")
     public ResponseEntity<?> altaVoto(
-//            @RequestBody @Valid Voto voto,
                                       @PathVariable("idUsuario") Long idUsuario,
                                       @PathVariable("idEvento") Long idEvento,
                                       @PathVariable("idEmprendimiento") Long idEmprendimiento,
                                       @PathVariable("idGeneradoPor") int idGeneradoPor){
-//
+
         Evento evento = eventoRepository.getById(idEvento);
         Usuario usuario = usuarioRepository.getById(idUsuario);
         Emprendimiento emprendimiento = emprendimientoRepository.getById(idEmprendimiento);

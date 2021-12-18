@@ -23,25 +23,18 @@ public class EventoController {
     private EventoService eventoService;
     @Autowired
     private VotoService votoService;
-
     Logger logger = LoggerFactory.getLogger(ErrorInfo.class);
-
     @GetMapping(value = "/")
     public ResponseEntity<?> todosLosEventos() {
         List<Evento> eventos = eventoService.allEventos();
-//        ArrayList<Evento> eventos = (ArrayList<Evento>) StreamSupport
-//                .stream(eventoService.allEventos().spliterator(), false)
-//                .collect(Collectors.toList());
         if (!eventos.isEmpty()) {
             return ResponseEntity.ok(eventos);
         } else return new ResponseEntity<>("no se encuentra agregado ningún evento", HttpStatus.NOT_FOUND);
     }
-
     @PostMapping(value = "/")
     public ResponseEntity<?> crearEvento(@Valid @RequestBody Evento evento) {
         return ResponseEntity.status(HttpStatus.CREATED).body(eventoService.crearEvento(evento));
     }
-
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> borrarEvento(@PathVariable(value = "id") int idEvento) {
         if (eventoService.buscarEventoId((long) idEvento).isPresent()) {
@@ -50,7 +43,6 @@ public class EventoController {
         }
         return new ResponseEntity<>("No hay eventos identificados con esa id o ingresó un dato invalido", HttpStatus.NOT_FOUND);
     }
-
     @PutMapping(value = "/{id}")
     ResponseEntity<?> modifiarEvento(@RequestBody @Valid Evento eventoModif, @PathVariable(value = "id") @Valid int idEvento) {
         Optional<Evento> evento = eventoService.buscarEventoId((long) idEvento);
@@ -63,11 +55,9 @@ public class EventoController {
         evento.get().setPremio(eventoModif.getPremio());
         return ResponseEntity.ok(eventoService.crearEvento(evento.get()));
     }
-
     @GetMapping(value = "rankingPorEventoId/{id}")
     ResponseEntity<?> rankingEvento(@PathVariable(value = "id") int idEvento) {
         List<Voto> voto = votoService.buscarVotoPorEvento((long) idEvento);
-//        Optional<Evento> evento = eventoServer.buscarEventoId((long) idEvento);
         Map<String, Long> mapRanking = new HashMap<>();
         List<String> emprendimientos = new ArrayList<>();
         for (Voto x : voto) {
@@ -84,4 +74,3 @@ public class EventoController {
         return new ResponseEntity<>("No hay votos registrados en este evento o el evento es inexistente", HttpStatus.NOT_FOUND);
     }
 }
-

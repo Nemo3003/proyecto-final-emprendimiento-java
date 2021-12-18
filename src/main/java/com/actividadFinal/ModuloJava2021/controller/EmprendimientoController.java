@@ -17,16 +17,13 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/emprendimiento")
 public class EmprendimientoController {
-
     @Autowired
     private EmprendimientoService emprendimientoService;
-
     @PostMapping("/")
     public ResponseEntity<?> altaEmprendimiento(@RequestBody @Valid Emprendimiento emprendimiento) {
         emprendimientoService.guardarEmprend(emprendimiento);
         return ResponseEntity.status(HttpStatus.CREATED).body(EmprendimientoDto.EmprendimientoAEmpDto(emprendimiento));
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<?> borrarEmprendimientoPorId(@PathVariable int id){
         if(!emprendimientoService.buscarPorIdEmprend((long)id).isEmpty()){
@@ -50,15 +47,11 @@ public class EmprendimientoController {
         emp.get().setUrls(emprendModif.getUrls());
         emprendimientoService.guardarEmprend(emp.get())  ;
         return ResponseEntity.ok(EmprendimientoDto.EmprendimientoAEmpDto(emp.get()));
-//                new ResponseEntity<>("Usuario modificado exitosamente", HttpStatus.OK);
     }
 
     @GetMapping("/")
     public ResponseEntity<?> todosEmpren(){
         List<Emprendimiento> emprendimientos = emprendimientoService.todosEmprendimientos();
-//                (ArrayList<Emprendimiento>) StreamSupport
-//                .stream(emprendimientoServer  .todosEmprendimientos().spliterator(), false)
-//                .collect(Collectors.toList());
         if(!emprendimientos.isEmpty()){
             List<EmprendimientoDto> listaDtosEmp = new ArrayList<>();
             for (Emprendimiento s: emprendimientos) listaDtosEmp.add(EmprendimientoDto.EmprendimientoAEmpDto(s));

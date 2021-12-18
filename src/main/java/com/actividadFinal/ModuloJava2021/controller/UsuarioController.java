@@ -1,6 +1,5 @@
 package com.actividadFinal.ModuloJava2021.controller;
 
-
 import com.actividadFinal.ModuloJava2021.dtos.UsuarioDto;
 import com.actividadFinal.ModuloJava2021.entity.Usuario;
 import com.actividadFinal.ModuloJava2021.service.UsuarioService;
@@ -15,15 +14,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 //maneja las queries de postman
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
-
     @Autowired
     private UsuarioService usuarioService;
-
     @GetMapping(value = "/")
     public ResponseEntity<?> obtenerTodosUsuarios(){
         List<Usuario> usuarios = usuarioService.obtUsuarios();
@@ -34,7 +30,6 @@ public class UsuarioController {
         }
         return new ResponseEntity<>("No existe ningún usuario agregado", HttpStatus.NOT_FOUND);
     }
-
     @PostMapping(value = "/")
     public ResponseEntity<?> guardarUsuario(@Valid @RequestBody Usuario usuario){
         try {
@@ -64,7 +59,6 @@ public class UsuarioController {
         }catch(Exception e){
             return new ResponseEntity<>("Error: ya existe se encuentra resgistrado el mail: " + usuario.get().getEmail(), HttpStatus.BAD_REQUEST);}
     }
-
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Object> eliminarUsuario(@PathVariable(value = "id") int idUsuario){
         if(!usuarioService.obtUnUsuarioPorId((long) idUsuario).isPresent()){
@@ -73,7 +67,6 @@ public class UsuarioController {
         usuarioService.borrarUsuario((long) idUsuario);
         return ResponseEntity.ok("usuario borrado exitosamente");
     }
-
     @GetMapping(value = "/buscarPorId/{id}")
     public ResponseEntity<?> obtenerUnUsuarioPorId(@PathVariable(value = "id") int id){
         Optional<Usuario> usuario = usuarioService.obtUnUsuarioPorId((long) id);
@@ -93,7 +86,6 @@ public class UsuarioController {
         }
         return new ResponseEntity<>("No se encuentra el usuario por la ciudad ingresada: " + ciudad, HttpStatus.NOT_FOUND);
     }
-
     @GetMapping(value = "/buscarPorFecha/{id}")
     public ResponseEntity<?> obtenerUnUsuarioPorFechaPost(@PathVariable(value = "id") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fecha){
             List<Usuario> usuarioLista = usuarioService.obtUsuariosPorFechaPost(fecha);
@@ -106,4 +98,3 @@ public class UsuarioController {
             return new ResponseEntity<>("No hay ningun usuario creado posteriormente a la fecha ingresada", HttpStatus.NOT_FOUND);
     }
 }
-//oh no D:
