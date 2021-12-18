@@ -27,9 +27,6 @@ public class UsuarioController {
     @GetMapping(value = "/")
     public ResponseEntity<?> obtenerTodosUsuarios(){
         List<Usuario> usuarios = usuarioService.obtUsuarios();
-//        ArrayList<Usuario> usuarios = (ArrayList<Usuario>) StreamSupport
-//                .stream(usuarioServer.obtUsuarios().spliterator(), false)
-//                .collect(Collectors.toList());
         List<UsuarioDto> listaDtosUsuario = new ArrayList<>();
         if(!usuarios.isEmpty()) {
             for (Usuario s: usuarios) listaDtosUsuario.add(UsuarioDto.UsuarioAUsuarioDto(s));
