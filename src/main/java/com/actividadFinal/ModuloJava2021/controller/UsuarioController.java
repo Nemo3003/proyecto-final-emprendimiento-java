@@ -16,8 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-
-
+//maneja las queries de postman
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -63,7 +62,6 @@ public class UsuarioController {
         usuario.get().setPais(usuarioModif.getPais());
         usuario.get().setTipo(usuarioModif.getTipo());
         try {
-//            usuarioService.modifUsuario((long) idUsuario, usuarioModif);
         usuarioService.guardarUsuario(usuario.get());
         return new ResponseEntity<>(UsuarioDto.UsuarioAUsuarioDto(usuario.get()), HttpStatus.OK);
         }catch(Exception e){

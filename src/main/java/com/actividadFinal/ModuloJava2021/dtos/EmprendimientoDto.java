@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Date;
-
+//dtos es para pasar un json más resumido.
 public class EmprendimientoDto implements Serializable{
     @Getter @Setter
     private Long id;
