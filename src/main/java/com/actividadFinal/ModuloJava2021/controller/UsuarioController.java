@@ -106,4 +106,4 @@ public class UsuarioController {
             return new ResponseEntity<>("No hay ningun usuario creado posteriormente a la fecha ingresada", HttpStatus.NOT_FOUND);
     }
 }
-
+//oh no D:
