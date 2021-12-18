@@ -12,14 +12,10 @@ public class TagService {
 
     @Autowired
     private TagRepository tagRepository;
-
     @Transactional
     public Tags crearTag(Tags tag){return tagRepository.save(tag);}
-
     @Transactional
     public void eliminarTag(Long id){tagRepository.deleteById(id);}
-
     @Transactional
     public Optional<Tags> buscarTagId(Long id){return tagRepository.findById(id);}
-
 }

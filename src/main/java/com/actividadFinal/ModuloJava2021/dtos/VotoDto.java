@@ -12,20 +12,15 @@ import java.util.Date;
 public class VotoDto implements Serializable {
     @Getter @Setter
     private Long id;
-
     @Getter @Setter
     private String username;
-
     @Getter @Setter
     private String evento;
-
     @Getter @Setter
     private String votoAEmprendimiento;
-
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Getter @Setter
     private Date fechaDeCreacion;
-
     @Getter @Setter
     private VotoGenerado creadoPor;
 

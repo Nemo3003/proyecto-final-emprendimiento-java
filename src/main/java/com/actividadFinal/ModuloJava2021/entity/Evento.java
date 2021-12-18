@@ -24,34 +24,26 @@ public class Evento {
     @NotBlank(message = " no debe estar en blanco")
     @Getter @Setter
     @Column(name = "detallesEvento", length = 500)
-
     private String detallesEvento;
-
     @Getter @Setter
     @CreationTimestamp
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "fechaCreacion")
     private Date fechaCreacion;
-
     @Getter @Setter
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "fechaCierre")
     private Date fechaCierre;
-
     @Setter @Column(name = "estado")
     private EstadoEvento estadoEvento;
-
     @NotNull(message="no puede estar en blanco.")
     @Enumerated(EnumType.STRING)
     public EstadoEvento getEstadoEvento() {
         return estadoEvento;
     }
-
-
     @Getter @Setter @Column(name = "premio")
     @NotNull(message = "no puede estar vacio.")
     private BigInteger premio;
-
     public Evento(String detallesEvento, Date fechaCierre, EstadoEvento estadoEvento, BigInteger premio){
         this.detallesEvento = detallesEvento;
         this.fechaCierre = fechaCierre;
@@ -62,16 +54,3 @@ public class Evento {
     public Evento() {
     }
 }
-
-// Con las sgtes lineas de codigo estaba intentando de implementar algo que nunca use:
-//    @JoinColumn(name = "id")
-//    @MapKeyColumn(name = "emprendimiento_nombre")
-//    @ManyToMany
-//    private Collection<Emprendimiento> suscriptores;
-
-
-//    @Getter @Setter
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "votoEnEvento", nullable = false)
-//    private List<Voto> votosEvento;
-

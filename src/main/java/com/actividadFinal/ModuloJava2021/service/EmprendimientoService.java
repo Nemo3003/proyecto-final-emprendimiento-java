@@ -26,7 +26,6 @@ public class EmprendimientoService {
     public void borrarEmprend(Long id){emprendimientoRepository.deleteById(id);}
     @Transactional
     public List<Emprendimiento> todosEmprendimientos(){return emprendimientoRepository.findAll();}
-//    public Iterable<Emprendimiento> todosEmprendimientos(){return emprendimientoRepository.findAll();}
     @Transactional
     public Optional<Emprendimiento> buscarPorIdEmprend(Long id){return emprendimientoRepository.findById(id);}
     @Transactional

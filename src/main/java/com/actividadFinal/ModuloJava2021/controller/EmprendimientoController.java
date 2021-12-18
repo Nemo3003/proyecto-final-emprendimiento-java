@@ -48,7 +48,6 @@ public class EmprendimientoController {
         emprendimientoService.guardarEmprend(emp.get())  ;
         return ResponseEntity.ok(EmprendimientoDto.EmprendimientoAEmpDto(emp.get()));
     }
-
     @GetMapping("/")
     public ResponseEntity<?> todosEmpren(){
         List<Emprendimiento> emprendimientos = emprendimientoService.todosEmprendimientos();

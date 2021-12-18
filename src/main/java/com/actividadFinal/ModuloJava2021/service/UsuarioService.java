@@ -16,11 +16,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
-
     @Autowired
     UsuarioRepository usuarioRepository;
     @Transactional(readOnly = true)
-//    public Iterable<Usuario> obtUsuarios(){return usuarioRepository.findAll();}
     public List<Usuario> obtUsuarios(){return usuarioRepository.findAll();}
     @Transactional(readOnly = true)
     public Optional<Usuario> obtUnUsuarioPorId(Long id) {return  usuarioRepository.findById(id);}
@@ -38,5 +36,4 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);}
     @Transactional
     public void borrarUsuario(Long id){usuarioRepository.deleteById(id);}
-
 }

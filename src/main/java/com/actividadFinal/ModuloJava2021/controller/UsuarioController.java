@@ -41,9 +41,7 @@ public class UsuarioController {
     }
     @PutMapping(value = "/{id}")
     ResponseEntity<?> modifiarUsuario(@Valid @RequestBody  Usuario usuarioModif, @PathVariable(value = "id", required = false) @Valid int idUsuario) {
-
         Optional<Usuario> usuario = usuarioService.obtUnUsuarioPorId((long) idUsuario);
-
         if(!usuario.isPresent()){return new ResponseEntity<>("Error: no se encuentra ningún usuario con el id " + idUsuario, HttpStatus.NOT_FOUND);}
         usuario.get().setApellido(usuarioModif.getApellido());
         usuario.get().setNombre(usuarioModif.getNombre());

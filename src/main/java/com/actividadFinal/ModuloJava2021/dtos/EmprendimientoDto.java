@@ -30,7 +30,6 @@ public class EmprendimientoDto implements Serializable{
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Getter @Setter
     private Date fechaCreacion;
-
     public EmprendimientoDto(Long id, String nombre, String descripcion, String contenido, BigInteger recaudacion, Boolean publicado, Collection tags, Collection urls, Date fechaCreacion){
         this.id = id;
         this.nombre = nombre;

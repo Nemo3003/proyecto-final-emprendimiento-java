@@ -36,16 +36,11 @@ public class VotoController {
                                       @PathVariable("idEvento") Long idEvento,
                                       @PathVariable("idEmprendimiento") Long idEmprendimiento,
                                       @PathVariable("idGeneradoPor") int idGeneradoPor){
-
         Evento evento = eventoRepository.getById(idEvento);
         Usuario usuario = usuarioRepository.getById(idUsuario);
         Emprendimiento emprendimiento = emprendimientoRepository.getById(idEmprendimiento);
-//        VotoGenerado votoGenPor = VotoGenerado.valueOf(generadoPor);
         List<VotoGenerado> votoGenerado = List.of(VotoGenerado.mobile, VotoGenerado.web, VotoGenerado.servicio);
         Voto votoNuevo = new Voto();
-//        votoNuevo.setGeneradoPor(voto.getGeneradoPor());
-//        votoNuevo.setIdVoto(voto.getIdVoto());
-//        votoNuevo.setFechaCreacion(voto.getFechaCreacion());
         votoNuevo.setUsername(usuario);
         votoNuevo.setEvento(evento);
         votoNuevo.setVotoAEmprendimiento(emprendimiento);
